@@ -1,0 +1,34 @@
+/* CryptTypes.h: Rijndael base types. */
+
+/* Constants. */
+
+#define ROWS 4
+
+#define DATA_LENGTH 16
+#define DATA_COLUMNS (DATA_LENGTH / ROWS)
+
+#define KEY_LENGTH 16
+#define KEY_COLUMNS (KEY_LENGTH / ROWS)
+
+#define ROUNDS ((KEY_COLUMNS >= DATA_COLUMNS) ? (KEY_COLUMNS + 6) : (DATA_COLUMNS + 6))
+
+#define EXPANDED_KEY_LENGTH ((ROUNDS + 1) * DATA_LENGTH)
+#define EXPANDED_KEY_COLUMNS (EXPANDED_KEY_LENGTH / ROWS)
+
+/* Types. */
+
+typedef unsigned char BYTE;
+
+typedef BYTE SBOX[256];
+
+typedef BYTE VECTOR[ROWS];
+typedef BYTE MATRIX[ROWS][ROWS];
+
+typedef BYTE DATA_VECTOR[DATA_LENGTH];
+typedef BYTE DATA_MATRIX[ROWS][DATA_COLUMNS];
+typedef BYTE DATA_ROW[DATA_COLUMNS];
+typedef BYTE DATA_COLUMN[ROWS];
+
+typedef BYTE KEY_VECTOR[KEY_LENGTH];
+typedef DATA_MATRIX EXPANDED_KEY_MATRIX[ROUNDS + 1];
+
